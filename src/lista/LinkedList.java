@@ -76,9 +76,23 @@ public class LinkedList<T> implements Lista<T> {
     }
 
     @Override
-    public Nodo<T> getPrevElement() {
-        return null;
-    }
+    public Nodo<T> getPrevElement(T value) {
+        Nodo<T> tmp = null;
+        try{
+        isEmpty();
+        tmp = getPrevElement(root, value);
+        } catch (NoSuchElementException e){
+            System.out.println(e.getMessage());
+        }
+        return tmp;
+    };
+    private Nodo<T> getPrevElement(Nodo<T> root, T value){
+        if (root.getRight().getValue() == value){
+            return root;
+        }
+        else return getPrevElement(root.getRight(), value);
+    };
+
 
     @Override
     public Nodo<T> getElement() {

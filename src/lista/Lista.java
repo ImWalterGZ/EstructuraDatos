@@ -11,7 +11,7 @@ public interface Lista <T> {
 
     Nodo<T> getLastElement();
 
-    Nodo<T> getPrevElement();
+    Nodo<T> getPrevElement(T value);
 
     Nodo<T> getElement();
 
