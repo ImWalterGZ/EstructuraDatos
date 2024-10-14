@@ -87,6 +87,9 @@ public class LinkedList<T> implements Lista<T> {
         return tmp;
     };
     private Nodo<T> getPrevElement(Nodo<T> root, T value){
+        if (root.getRight() == null){
+            return null;
+        }
         if (root.getRight().getValue() == value){
             return root;
         }

@@ -13,13 +13,11 @@ public class Main {
 
         Random random = new Random();
         for (int i = 0; i < 1000 ; i++){
-            list.add(random.nextInt(1,132043));
+            list.add(random.nextInt(1,50));
         }
 
-        for (Iterator<Integer> iter = list.iterator(); iter.hasNext();){
-            System.out.printf(" %d\n", iter.next());
 
-        }
+        System.out.println(list.getPrevElement(5).getValue());
 
     }
 }
