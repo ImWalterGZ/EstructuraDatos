@@ -15,7 +15,11 @@ public class Main {
         for (int i = 0; i < 1000 ; i++){
             list.add(random.nextInt(1,132043));
         }
-        Iterator iterator = list.iterator();
+
+        for (Iterator<Integer> iter = list.iterator(); iter.hasNext();){
+            System.out.printf(" %d\n", iter.next());
+
+        }
 
     }
 }
