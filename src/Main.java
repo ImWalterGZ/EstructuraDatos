@@ -37,7 +37,9 @@ public class Main {
         list.add(8);
         list.add(32);
 
-        System.out.println(list.getElement(0));
+        System.out.println(list.getElement(4));
+        list.remove(4);
+        System.out.println(list.getElement(4));
 
 
     }

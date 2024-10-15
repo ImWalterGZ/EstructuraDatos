@@ -48,6 +48,6 @@ public interface Lista <T> {
     long getLength();
 
     void removeAll(T value);
-
+    void removeAll(Nodo<T> value);
     String toString();
 }

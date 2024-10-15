@@ -162,11 +162,34 @@ public class LinkedList<T> implements Lista<T> {
 
     @Override
     public void remove(T value) {
+        if (value != null){
+            try {
+                isEmpty();
+
+                if(getElement(value) != -1){
+                    Nodo<T> tmp = getPrevElement(value);
+                    if (tmp.getRight().getRight() != null){
+                        Nodo<T> right = tmp.getRight().getRight();
+                        tmp.setRight(right.getRight());
+
+                    } else {
+                        tail.setLeft(tmp);
+                        tmp.setRight(null);
+                    }
+                    System.gc();
+                    length--;
+                }
+
+            } catch (NoSuchElementException e){
+                System.out.printf(" %s ", e.getMessage());
+            }
+        }
 
     }
 
     @Override
     public void remove(Nodo<T> node) {
+        if (node != null) remove(node.getValue());
 
     }
 
@@ -237,6 +260,11 @@ public class LinkedList<T> implements Lista<T> {
 
     @Override
     public void removeAll(T value) {
+
+    }
+
+    @Override
+    public void removeAll(Nodo<T> value) {
 
     }
 
