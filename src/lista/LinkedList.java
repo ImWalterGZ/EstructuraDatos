@@ -1,5 +1,6 @@
 package lista;
 
+import java.lang.reflect.AnnotatedElement;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -98,8 +99,27 @@ public class LinkedList<T> implements Lista<T> {
 
 
     @Override
-    public Nodo<T> getElement() {
-        return null;
+    public long getElement(T element) {
+        if (element != null){
+            try {
+                isEmpty();
+                return getElement(root.getRight(), element,1);
+            } catch (NoSuchElementException e){
+                System.out.printf(" %s ", e.getMessage());
+            }
+        }
+
+
+        return -1;
+    }
+
+    private long getElement(Nodo<T> node, T element, long contador ){
+        if (node == null) return -1;
+        if (element != node.getValue()){
+            return(getElement(node.getRight(),element,++contador));
+        }
+        return contador;
+
     }
 
     @Override

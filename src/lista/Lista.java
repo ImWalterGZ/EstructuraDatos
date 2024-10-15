@@ -13,7 +13,7 @@ public interface Lista <T> {
 
     Nodo<T> getPrevElement(T value);
 
-    Nodo<T> getElement();
+    long getElement(T element);
 
     Nodo<T> getElementAt();
 
