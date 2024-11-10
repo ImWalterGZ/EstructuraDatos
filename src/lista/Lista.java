@@ -4,9 +4,6 @@ import org.w3c.dom.Node;
 
 public interface Lista <T> {
 
-
-
-
     boolean isEmpty();
 
     Nodo<T> getLastElement();

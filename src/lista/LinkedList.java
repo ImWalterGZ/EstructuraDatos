@@ -9,12 +9,12 @@ public class LinkedList<T> implements Lista<T> {
     private Nodo<T> root, tail;
     private long length;
 
-    public LinkedList(T value){
+    public LinkedList(T value) {
         // C'est le même
         this.root = new Nodo<>();
         this.tail = new Nodo<>();
         this.length = 0;
-        if (value != null){
+        if (value != null) {
             length++;
             Nodo<T> nuevo = new Nodo<>(value);
             root.setRight(nuevo);
@@ -24,13 +24,13 @@ public class LinkedList<T> implements Lista<T> {
 
     }
 
-    public LinkedList(Nodo<T> nodo){
+    public LinkedList(Nodo<T> nodo) {
         length++;
         root.setRight(nodo);
         tail.setLeft(nodo);
     }
 
-    public LinkedList(){
+    public LinkedList() {
         this((T) null);
     }
 
@@ -39,18 +39,19 @@ public class LinkedList<T> implements Lista<T> {
     // Al hacerlos directo en la clase en lugar de implementarlos
     // Quiero utilizar el iterador para recorrerlo por un for each
     public Iterator<T> iterator() {
-        return new Iterator<T>(){
+        return new Iterator<T>() {
             Nodo<T> copy = root.getRight(), sub_node;
 
             @Override
-            public boolean hasNext(){
+            public boolean hasNext() {
                 if (copy == null) return false;
                 sub_node = copy;
                 copy = copy.getRight();
                 return true;
             }
+
             @Override
-            public T next(){
+            public T next() {
                 return sub_node.getValue();
             }
         };
@@ -58,7 +59,7 @@ public class LinkedList<T> implements Lista<T> {
 
     @Override
     public boolean isEmpty() throws NoSuchElementException {
-        if (root.getRight() == null){
+        if (root.getRight() == null) {
             throw new NoSuchElementException("La lista está vacía");
         }
         return false;
@@ -69,8 +70,8 @@ public class LinkedList<T> implements Lista<T> {
         return getLastElement(root);
     }
 
-    private Nodo<T> getLastElement(Nodo<T> root){
-        if (root.getRight() == null){
+    private Nodo<T> getLastElement(Nodo<T> root) {
+        if (root.getRight() == null) {
             return root;
         }
         return getLastElement(root.getRight());
@@ -79,32 +80,36 @@ public class LinkedList<T> implements Lista<T> {
     @Override
     public Nodo<T> getPrevElement(T value) {
         Nodo<T> tmp = null;
-        try{
-        isEmpty();
-        tmp = getPrevElement(root, value);
-        } catch (NoSuchElementException e){
+        try {
+            isEmpty();
+            tmp = getPrevElement(root, value);
+        } catch (NoSuchElementException e) {
             System.out.println(e.getMessage());
         }
         return tmp;
-    };
-    private Nodo<T> getPrevElement(Nodo<T> root, T value){
-        if (root.getRight() == null){
+    }
+
+    ;
+
+    private Nodo<T> getPrevElement(Nodo<T> root, T value) {
+        if (root.getRight() == null) {
             return null;
         }
-        if (root.getRight().getValue() == value){
+        if (root.getRight().getValue() == value) {
             return root;
-        }
-        else return getPrevElement(root.getRight(), value);
-    };
+        } else return getPrevElement(root.getRight(), value);
+    }
+
+    ;
 
 
     @Override
     public long getElement(T element) {
-        if (element != null){
+        if (element != null) {
             try {
                 isEmpty();
-                return getElement(root.getRight(), element,1);
-            } catch (NoSuchElementException e){
+                return getElement(root.getRight(), element, 1);
+            } catch (NoSuchElementException e) {
                 System.out.printf(" %s ", e.getMessage());
             }
         }
@@ -113,10 +118,10 @@ public class LinkedList<T> implements Lista<T> {
         return -1;
     }
 
-    private long getElement(Nodo<T> node, T element, long contador ){
+    private long getElement(Nodo<T> node, T element, long contador) {
         if (node == null) return -1;
-        if (element != node.getValue()){
-            return(getElement(node.getRight(),element,++contador));
+        if (element != node.getValue()) {
+            return (getElement(node.getRight(), element, ++contador));
         }
         return contador;
 
@@ -139,14 +144,14 @@ public class LinkedList<T> implements Lista<T> {
 
     @Override
     public void add(T value) {
-        if (value != null){
+        if (value != null) {
 
-                Nodo<T> nouveau = new Nodo<>(value);
-                Nodo<T> last = getLastElement();
+            Nodo<T> nouveau = new Nodo<>(value);
+            Nodo<T> last = getLastElement();
 
-                last.setRight(nouveau);
-                tail.setLeft(nouveau);
-                length++;
+            last.setRight(nouveau);
+            tail.setLeft(nouveau);
+            length++;
 
 
         }
@@ -157,18 +162,17 @@ public class LinkedList<T> implements Lista<T> {
     public void add(Nodo<T> node) {
 
 
-
     }
 
     @Override
     public void remove(T value) {
-        if (value != null){
+        if (value != null) {
             try {
                 isEmpty();
 
-                if(getElement(value) != -1){
+                if (getElement(value) != -1) {
                     Nodo<T> tmp = getPrevElement(value);
-                    if (tmp.getRight().getRight() != null){
+                    if (tmp.getRight().getRight() != null) {
                         Nodo<T> right = tmp.getRight().getRight();
                         tmp.setRight(right.getRight());
 
@@ -180,7 +184,7 @@ public class LinkedList<T> implements Lista<T> {
                     length--;
                 }
 
-            } catch (NoSuchElementException e){
+            } catch (NoSuchElementException e) {
                 System.out.printf(" %s ", e.getMessage());
             }
         }
@@ -255,7 +259,7 @@ public class LinkedList<T> implements Lista<T> {
 
     @Override
     public long getLength() {
-        return 0;
+        return length;
     }
 
     @Override
